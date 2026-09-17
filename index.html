@@ -282,6 +282,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 }
 </style>
 
+<script src="lecture2-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -351,6 +352,33 @@ if(!state._migrations.envengModule1KnowV1){
   state._migrations.envengModule1KnowV1=true;
   save();
 }
+if(!state._migrations.envengW1L2v1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  if(!env.topics.some(t=>t.title===window.ENVENG_W1L2.title)){
+    if(env.topics.length===1&&env.topics[0].title==='Start Here'&&env.topics[0].blocks?.length===1&&env.topics[0].blocks[0].text?.startsWith('Add ENVENG 200 topics here'))env.topics=[];
+    const nextWeek=env.topics.findIndex(t=>/^Week 2\b|^W2\b/i.test(t.title));
+    const topic=JSON.parse(JSON.stringify(window.ENVENG_W1L2));
+    if(nextWeek>=0)env.topics.splice(nextWeek,0,topic);else env.topics.unshift(topic);
+  }
+  state._migrations.envengW1L2v1=true;
+  save();
+}
+if(!state._migrations.envengModule1L2KnowV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  let know=env.topics.find(t=>t.title==='Module 1 - What I Need to Know');
+  if(!know){
+    know={title:'Module 1 - What I Need to Know',tags:'ENVENG 200 module 1 must know revision',blocks:[]};
+    env.topics.push(know);
+  }
+  if(!know.blocks.some(b=>b.type==='heading'&&b.text==='Lecture 2 - Water Quality Parameters and Calculations')){
+    know.blocks.unshift(...JSON.parse(JSON.stringify(window.ENVENG_MODULE1_L2_KNOW_BLOCKS)));
+    know.tags=(know.tags+' water quality chemical equivalence alkalinity hardness TDS solids calculations').trim();
+  }
+  state._migrations.envengModule1L2KnowV1=true;
+  save();
+}
 renderAll()}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));status.textContent='Saved'}catch(e){status.textContent='Storage full — export a backup'} }
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
@@ -368,6 +396,9 @@ function inlineRich(s=''){
     'point source','non-point source',
     'greywater','blackwater',
     'BOD₅','BOD','COD','TSS','TDS','WWTP',
+    'chemical equivalence','equivalent weight','alkalinity','hardness',
+    'carbonate hardness','non-carbonate hardness','total solids',
+    'total fixed solids','total volatile solids','electrical conductivity',
     'eutrophication','resource recovery',
     'gravity flow','pump stations'
   ];
