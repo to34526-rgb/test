@@ -379,6 +379,51 @@ if(!state._migrations.envengModule1L2KnowV1){
   state._migrations.envengModule1L2KnowV1=true;
   save();
 }
+if(!state._migrations.envengW1L2CaptionTimesV2){
+  const captionTimes=[
+    ['this lecture will cover all of the different types of calculation questions','Part 1, approximately **01:35**'],
+    ['and for this module, you will be given a formula sheet','Part 1, approximately **02:30**'],
+    ['And again I will be giving this formula on the formula sheet','Part 1, approximately **11:15**'],
+    ['So hopefully, um, if we ask you, well, when we will ask you questions','Part 1, approximately **09:30**'],
+    ['But for the purpose of this class, because it\'s just the first fundamentals','Part 1, approximately **29:35**'],
+    ['And if I ask you a question about this, I would of course just give you the electrical conductivity','Part 1, approximately **44:30**'],
+    ['if I present this kind of question to you, it\'s because you can expect to see similar kind of templates','Part 1, approximately **47:50**'],
+    ['And these quizzes are not graded','Part 2, approximately **16:45**']
+  ];
+  const env=state.courses.find(c=>c.name==='ENVENG 200');
+  (env?.topics||[]).forEach(topic=>(topic.blocks||[]).forEach(block=>{
+    if(block.type!=='exam'||!block.text||block.text.includes('**Caption reference:**'))return;
+    const match=captionTimes.find(([phrase])=>block.text.includes(phrase));
+    if(!match)return;
+    const splitAt=block.text.indexOf('\n\n');
+    const reference=`**Caption reference:** ${match[1]}.`;
+    block.text=splitAt>=0
+      ? `${block.text.slice(0,splitAt)}\n\n${reference}${block.text.slice(splitAt)}`
+      : `${block.text}\n\n${reference}`;
+  }));
+  const timestampNote='**Timestamp note:** the uploaded plain-text captions do not contain embedded timecodes. Caption references on this page are therefore **approximate** estimates based on each statement\'s position in the transcript. Use the stated Part 1 or Part 2 recording and search near that time.';
+  const lectureTopic=env?.topics.find(t=>t.title===window.ENVENG_W1L2.title);
+  if(lectureTopic&&!lectureTopic.blocks.some(b=>b.text?.includes('**Timestamp note:**'))){
+    const intro=lectureTopic.blocks.findIndex(b=>b.type==='text');
+    lectureTopic.blocks.splice(intro>=0?intro+1:0,0,{type:'text',text:timestampNote});
+  }
+  const knowTopic=env?.topics.find(t=>t.title==='Module 1 - What I Need to Know');
+  if(knowTopic&&!knowTopic.blocks.some(b=>b.text?.includes('**Timestamp note:**'))){
+    const l2=knowTopic.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 2 - Water Quality Parameters and Calculations');
+    if(l2>=0)knowTopic.blocks.splice(l2+2,0,{type:'text',text:'**Timestamp note:** the uploaded plain-text captions do not contain embedded timecodes. The Part 1 and Part 2 references below are **approximate** estimates based on transcript position.'});
+  }
+  if(knowTopic&&!knowTopic.blocks.some(b=>b.text?.includes('I would of course just give you the electrical conductivity'))){
+    const solidsHint=knowTopic.blocks.findIndex(b=>b.type==='exam'&&b.text?.includes('similar kind of templates when I assess you'));
+    const ecHint={type:'exam',text:`**"And if I ask you a question about this, I would of course just give you the electrical conductivity. And so you would just have to multiply it by this factor okay."**
+
+**Caption reference:** Part 1, approximately **44:30**.
+
+What this means: for this calculation, identify the supplied electrical conductivity and multiply it by the lecture's 0.65 conversion factor to estimate TDS in mg/L.`};
+    knowTopic.blocks.splice(solidsHint>=0?solidsHint:knowTopic.blocks.length,0,ecHint);
+  }
+  state._migrations.envengW1L2CaptionTimesV2=true;
+  save();
+}
 renderAll()}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));status.textContent='Saved'}catch(e){status.textContent='Storage full — export a backup'} }
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}

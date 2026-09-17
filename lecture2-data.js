@@ -12,10 +12,15 @@ window.ENVENG_W1L2 = {
 • laboratory solids calculations
 
 By the end, you should be able to convert between mass and charge units, calculate alkalinity and hardness as CaCO₃, estimate TDS from electrical conductivity, classify solids, and interpret drying, filtration and ignition data.`},
+    {type:'text', text:`**Timestamp note:** the uploaded plain-text captions do not contain embedded timecodes. Caption references on this page are therefore **approximate** estimates based on each statement's position in the transcript. Use the stated Part 1 or Part 2 recording and search near that time.`},
     {type:'exam', text:`**"this lecture will cover all of the different types of calculation questions that that you could be asked on the test."**
+
+**Caption reference:** Part 1, approximately **01:35**.
 
 Revision meaning: treat **all five worked-example types** in this lecture as assessable. You should be able to reproduce the method, not just recognise the final answer.`},
     {type:'exam', text:`**"and for this module, you will be given a formula sheet which I have just uploaded on canvas."**
+
+**Caption reference:** Part 1, approximately **02:30**.
 
 Revision meaning: focus on choosing and applying the correct formula, defining the quantities, keeping units consistent, and interpreting the result. Do not spend your main revision time memorising the supplied equations.`},
 
@@ -56,8 +61,12 @@ Variables and units
 The absolute charge is used. For example, Na⁺ has |charge| = 1 and SO₄²⁻ has |charge| = 2. The plus or minus sign identifies whether the ion is a cation or an anion, but it does not make an equivalent concentration negative.`},
     {type:'exam', text:`**"And again I will be giving this formula on the formula sheet so you don't have to memorise."**
 
+**Caption reference:** Part 1, approximately **11:15**.
+
 Revision meaning: know what each term means and be able to obtain formula weight and charge correctly.`},
     {type:'exam', text:`**"So hopefully, um, if we ask you, well, when we will ask you questions about this, like on the test or exam, for example, then we will also provide this table like the same one."**
+
+**Caption reference:** Part 1, approximately **09:30**.
 
 Revision meaning: the periodic table will be supplied. Practise locating atomic masses and building a compound's formula weight from its chemical formula.`},
 
@@ -155,6 +164,8 @@ Lecture classification:
 • hard: > 120 mg/L as CaCO₃`},
     {type:'exam', text:`**"But for the purpose of this class, because it's just the first fundamentals of environmental engineering, I will only ask you questions with calcium and magnesium so that you don't get confused."**
 
+**Caption reference:** Part 1, approximately **29:35**.
+
 Revision meaning: practise hardness questions using Ca²⁺ and Mg²⁺. Other multivalent ions exist, but they are outside the stated calculation scope.`},
     {type:'formula', text:`Hardness contribution as CaCO₃ (mg/L) = ion concentration (meq/L) × 50 mg/meq
 
@@ -228,6 +239,8 @@ TDS ≈ 0.65 × 750
 = **487.5 mg/L**`},
     {type:'exam', text:`**"And if I ask you a question about this, I would of course just give you the electrical conductivity. And so you would just have to multiply it by this factor okay."**
 
+**Caption reference:** Part 1, approximately **44:30**.
+
 Revision meaning: be able to identify EC, apply the 0.65 factor, retain units, and recognise that the result is approximate.`},
 
     {type:'heading', text:'5. Laboratory solids classification'},
@@ -267,6 +280,8 @@ The process is easiest to follow as a material split. Settling separates the hea
 
 Calculate suspended solids, total solids, total volatile solids and total dissolved solids. The detailed solution also reports total suspended solids and total fixed solids.`},
     {type:'exam', text:`**"if I present this kind of question to you, it's because you can expect to see similar kind of templates when I assess you on this content, because I just want to know that you guys understood how to deal with these kinds of information."**
+
+**Caption reference:** Part 1, approximately **47:50**.
 
 Revision meaning: practise turning the written procedure into a sequence of material fractions. Expect the numbers or wording to change while the calculation structure remains similar.`},
     {type:'formula', text:`Step 1 - filter-retained suspended solids (SS)
@@ -346,24 +361,42 @@ The solids procedure links measurements to physical fractions. Settling and filt
 window.ENVENG_MODULE1_L2_KNOW_BLOCKS = [
   {type:'heading', text:'Lecture 2 - Water Quality Parameters and Calculations'},
   {type:'text', text:`This section is the focused revision list for **Week 1, Lecture 2**. The lecturer framed the worked calculation types as testable, so revision should combine definitions with repeated calculation practice.`},
+  {type:'text', text:`**Timestamp note:** the uploaded plain-text captions do not contain embedded timecodes. The Part 1 and Part 2 references below are **approximate** estimates based on transcript position.`},
 
   {type:'heading', text:'Assessment scope and supplied information'},
   {type:'exam', text:`**"this lecture will cover all of the different types of calculation questions that that you could be asked on the test."**
 
+**Caption reference:** Part 1, approximately **01:35**.
+
 What this means: all five example types are in scope - equivalent concentration, alkalinity, hardness, TDS from EC, and laboratory solids calculations.`},
   {type:'exam', text:`**"and for this module, you will be given a formula sheet which I have just uploaded on canvas."**
+
+**Caption reference:** Part 1, approximately **02:30**.
 
 What this means: practise selecting formulas and using units correctly. The equations themselves are supplied.`},
   {type:'exam', text:`**"And again I will be giving this formula on the formula sheet so you don't have to memorise."**
 
+**Caption reference:** Part 1, approximately **11:15**.
+
 What this means: you do not need to memorise the equivalent-concentration formula, but you do need to understand formula weight, absolute charge and the conversion from mg/L to meq/L.`},
   {type:'exam', text:`**"So hopefully, um, if we ask you, well, when we will ask you questions about this, like on the test or exam, for example, then we will also provide this table like the same one."**
+
+**Caption reference:** Part 1, approximately **09:30**.
 
 What this means: the periodic table is supplied. You must still know how to read atomic masses and include every atom in a compound.`},
   {type:'exam', text:`**"But for the purpose of this class, because it's just the first fundamentals of environmental engineering, I will only ask you questions with calcium and magnesium so that you don't get confused."**
 
+**Caption reference:** Part 1, approximately **29:35**.
+
 What this means: hardness calculations should focus on Ca²⁺ and Mg²⁺.`},
+  {type:'exam', text:`**"And if I ask you a question about this, I would of course just give you the electrical conductivity. And so you would just have to multiply it by this factor okay."**
+
+**Caption reference:** Part 1, approximately **44:30**.
+
+What this means: for this calculation, identify the supplied electrical conductivity and multiply it by the lecture's 0.65 conversion factor to estimate TDS in mg/L.`},
   {type:'exam', text:`**"if I present this kind of question to you, it's because you can expect to see similar kind of templates when I assess you on this content, because I just want to know that you guys understood how to deal with these kinds of information."**
+
+**Caption reference:** Part 1, approximately **47:50**.
 
 What this means: the solids example is a model assessment question. Learn how to translate each laboratory step into a solids fraction.`},
 
@@ -430,6 +463,8 @@ TVS = TS - TFS`},
 
 Do not prioritise memorising the supplied equations or atomic masses. The lecturer said the formula sheet and periodic table would be provided. You still need enough familiarity to choose the correct relationship quickly.`},
   {type:'exam', text:`**"And these quizzes are not graded, so you can just do them without any stress, and they will remain open after being released for the rest of the semester."**
+
+**Caption reference:** Part 2, approximately **16:45**.
 
 Revision meaning: the Module 1 Week 1 practice quiz is formative, but it contains calculation practice the lecturer recommends using to identify gaps.`},
 
