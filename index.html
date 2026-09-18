@@ -286,6 +286,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="lecture4-data.js"></script>
 <script src="lecture5-data.js"></script>
 <script src="lecture6-data.js"></script>
+<script src="lecture7-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -547,6 +548,39 @@ if(!state._migrations.envengW3L6v1){
   know.tags=(know.tags+' lecture 6 drinking water coagulation flocculation sedimentation filtration disinfection slow sand rapid sand chlorine UV ozone').trim();
 
   state._migrations.envengW3L6v1=true;
+  save();
+}
+if(!state._migrations.envengW3L7v1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+
+  const existingIndex=env.topics.findIndex(t=>
+    t.title===window.ENVENG_W3L7.title ||
+    /stormwater and urban runoff challenges$/i.test(String(t.title||''))
+  );
+  const lecture=JSON.parse(JSON.stringify(window.ENVENG_W3L7));
+  if(existingIndex>=0)env.topics.splice(existingIndex,1,lecture);
+  else {
+    const l6Index=env.topics.findIndex(t=>t.title===window.ENVENG_W3L6.title);
+    const moduleIndex=env.topics.findIndex(t=>t.title==='Module 1 - What I Need to Know');
+    const insertAt=l6Index>=0?l6Index+1:(moduleIndex>=0?moduleIndex:env.topics.length);
+    env.topics.splice(insertAt,0,lecture);
+  }
+
+  let know=env.topics.find(t=>t.title==='Module 1 - What I Need to Know');
+  if(!know){
+    know={title:'Module 1 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 1 revision',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL7Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 7 - Stormwater and Urban Runoff Challenges');
+  if(oldL7Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL7Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL7Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL7Start);
+  }
+  know.blocks.push(...JSON.parse(JSON.stringify(window.ENVENG_MODULE1_L7_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 7 stormwater urban runoff impervious surfaces first flush pollutants WSUD LID raingardens swales green roofs').trim();
+
+  state._migrations.envengW3L7v1=true;
   save();
 }
 renderAll()}
