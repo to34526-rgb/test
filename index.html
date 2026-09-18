@@ -288,6 +288,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="lecture6-data.js"></script>
 <script src="lecture7-data.js"></script>
 <script src="lecture8-data.js"></script>
+<script src="module2-lecture1-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -615,6 +616,38 @@ if(!state._migrations.envengW3L8v1){
   know.tags=(know.tags+' lecture 8 LID permeable paving bioretention rain garden wetland swale planter filter strip infiltration trench dry well cistern green roof treatment train').trim();
 
   state._migrations.envengW3L8v1=true;
+  save();
+}
+if(!state._migrations.envengM2W4L1v1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+
+  const existingLecture=env.topics.findIndex(t=>
+    t.title===window.ENVENG_M2_W4L1.title ||
+    /introduction to module 2$/i.test(String(t.title||''))
+  );
+  const lecture=JSON.parse(JSON.stringify(window.ENVENG_M2_W4L1));
+  if(existingLecture>=0)env.topics.splice(existingLecture,1,lecture);
+  else {
+    const module1Index=env.topics.findIndex(t=>t.title==='Module 1 - What I Need to Know');
+    env.topics.splice(module1Index>=0?module1Index+1:env.topics.length,0,lecture);
+  }
+
+  let know=env.topics.find(t=>t.title==='Module 2 - What I Need to Know');
+  if(!know){
+    know={title:'Module 2 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 2 revision air quality noise acoustics monitoring calculations',blocks:[]};
+    const lectureIndex=env.topics.findIndex(t=>t.title===window.ENVENG_M2_W4L1.title);
+    env.topics.splice(lectureIndex>=0?lectureIndex+1:env.topics.length,0,know);
+  }
+  const oldL1Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 1 - Introduction to Module 2');
+  if(oldL1Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL1Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL1Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL1Start);
+  }
+  know.blocks.unshift(...JSON.parse(JSON.stringify(window.ENVENG_MODULE2_L1_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 1 soundscape infrastructure pollutants particle size Lmax L10 Leq L95 reverberation daily dose').trim();
+
+  state._migrations.envengM2W4L1v1=true;
   save();
 }
 renderAll()}
