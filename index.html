@@ -289,6 +289,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="lecture7-data.js"></script>
 <script src="lecture8-data.js"></script>
 <script src="module2-lecture1-data.js"></script>
+<script src="module2-lecture2-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -648,6 +649,28 @@ if(!state._migrations.envengM2W4L1v1){
   know.tags=(know.tags+' lecture 1 soundscape infrastructure pollutants particle size Lmax L10 Leq L95 reverberation daily dose').trim();
 
   state._migrations.envengM2W4L1v1=true;
+  save();
+}
+if(!state._migrations.envengM2W4L2KnowV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  let know=env.topics.find(t=>t.title==='Module 2 - What I Need to Know');
+  if(!know){
+    know={title:'Module 2 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 2 revision air quality noise acoustics monitoring calculations',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL2Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 2 - Acoustics for Engineers');
+  if(oldL2Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL2Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL2Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL2Start);
+  }
+  const l1Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 1 - Introduction to Module 2');
+  const nextAfterL1=know.blocks.findIndex((b,i)=>i>l1Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+  const insertAt=l1Start>=0?(nextAfterL1>=0?nextAfterL1:know.blocks.length):0;
+  know.blocks.splice(insertAt,0,...JSON.parse(JSON.stringify(window.ENVENG_MODULE2_L2_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 2 sound frequency wavelength speed power intensity inverse square pressure amplitude absorption reverberation').trim();
+
+  state._migrations.envengM2W4L2KnowV1=true;
   save();
 }
 renderAll()}
