@@ -291,6 +291,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="module2-lecture1-data.js"></script>
 <script src="module2-lecture2-data.js"></script>
 <script src="module2-lecture3-data.js"></script>
+<script src="module2-lecture4-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -694,6 +695,28 @@ if(!state._migrations.envengM2W4L3KnowV1){
   know.tags=(know.tags+' lecture 3 decibel intensity level pressure level reference values logarithms equal sources unequal sources').trim();
 
   state._migrations.envengM2W4L3KnowV1=true;
+  save();
+}
+if(!state._migrations.envengM2W5L4KnowV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  let know=env.topics.find(t=>t.title==='Module 2 - What I Need to Know');
+  if(!know){
+    know={title:'Module 2 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 2 revision air quality noise acoustics monitoring calculations',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL4Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 4 - Occupational Noise for Engineers');
+  if(oldL4Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL4Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL4Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL4Start);
+  }
+  const l3Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 3 - The Decibel Scale and Reference Values');
+  const nextAfterL3=know.blocks.findIndex((b,i)=>i>l3Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+  const insertAt=l3Start>=0?(nextAfterL3>=0?nextAfterL3:know.blocks.length):know.blocks.length;
+  know.blocks.splice(insertAt,0,...JSON.parse(JSON.stringify(window.ENVENG_MODULE2_L4_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 4 occupational noise hearing loss audiogram A-weighting dBA daily dose FDD exchange rate hearing protection').trim();
+
+  state._migrations.envengM2W5L4KnowV1=true;
   save();
 }
 renderAll()}
