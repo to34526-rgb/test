@@ -283,6 +283,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 </style>
 
 <script src="lecture2-data.js"></script>
+<script src="lecture4-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -422,6 +423,45 @@ What this means: for this calculation, identify the supplied electrical conducti
     knowTopic.blocks.splice(solidsHint>=0?solidsHint:knowTopic.blocks.length,0,ecHint);
   }
   state._migrations.envengW1L2CaptionTimesV2=true;
+  save();
+}
+if(!state._migrations.envengW2L4v2){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+
+  const oldLectureIndex=env.topics.findIndex(t=>
+    t.title===ENVENG_W2L1.title ||
+    t.title==='Week 2 Lecture 1 - Wastewater Sources and Characteristics' ||
+    t.title===window.ENVENG_W2L4.title
+  );
+  const lecture=JSON.parse(JSON.stringify(window.ENVENG_W2L4));
+  if(oldLectureIndex>=0)env.topics.splice(oldLectureIndex,1,lecture);
+  else {
+    const moduleIndex=env.topics.findIndex(t=>t.title==='Module 1 - What I Need to Know');
+    env.topics.splice(moduleIndex>=0?moduleIndex:env.topics.length,0,lecture);
+  }
+
+  let know=env.topics.find(t=>t.title==='Module 1 - What I Need to Know');
+  if(!know){
+    know={title:'Module 1 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 1 revision',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL4Start=know.blocks.findIndex(b=>
+    b.type==='heading' && (
+      b.text==='What the lecturer basically said you need to know' ||
+      b.text==='Lecture 4 - Wastewater Sources and Characteristics'
+    )
+  );
+  if(oldL4Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>
+      i>oldL4Start && b.type==='heading' && /^Lecture \d+\b/.test(b.text)
+    );
+    know.blocks.splice(oldL4Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL4Start);
+  }
+  know.blocks.push(...JSON.parse(JSON.stringify(window.ENVENG_MODULE1_L4_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 4 wastewater BOD COD point source non-point source collection').trim();
+
+  state._migrations.envengW2L4v2=true;
   save();
 }
 renderAll()}
