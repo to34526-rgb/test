@@ -464,6 +464,23 @@ if(!state._migrations.envengW2L4v2){
   state._migrations.envengW2L4v2=true;
   save();
 }
+if(!state._migrations.envengW2L4DedupeV3){
+  const env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(env){
+    const duplicateIndexes=[];
+    env.topics.forEach((topic,index)=>{
+      const title=String(topic.title||'').toLowerCase();
+      if(title.includes('wastewater sources and characteristics'))duplicateIndexes.push(index);
+    });
+    if(duplicateIndexes.length){
+      const insertAt=duplicateIndexes[0];
+      env.topics=env.topics.filter((_,index)=>!duplicateIndexes.includes(index));
+      env.topics.splice(insertAt,0,JSON.parse(JSON.stringify(window.ENVENG_W2L4)));
+    }
+  }
+  state._migrations.envengW2L4DedupeV3=true;
+  save();
+}
 renderAll()}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));status.textContent='Saved'}catch(e){status.textContent='Storage full — export a backup'} }
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
