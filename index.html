@@ -295,6 +295,8 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="module2-lecture5-data.js"></script>
 <script src="module2-lecture6-data.js"></script>
 <script src="module2-lecture7-data.js"></script>
+<script src="module2-lecture8-data.js"></script>
+<script src="module2-lecture9-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -786,6 +788,45 @@ if(!state._migrations.envengM2W6L7KnowV1){
   know.tags=(know.tags+' lecture 7 industrial air pollution gravity settler wet scrubber baghouse cyclone electrostatic precipitator absorption adsorption control selection').trim();
 
   state._migrations.envengM2W6L7KnowV1=true;
+  save();
+}
+if(!state._migrations.envengM2W6L8KnowV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  let know=env.topics.find(t=>t.title==='Module 2 - What I Need to Know');
+  if(!know){
+    know={title:'Module 2 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 2 revision air quality noise acoustics monitoring calculations',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL8Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 8 - Measurement Methods and Exposure Assessment');
+  if(oldL8Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL8Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL8Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL8Start);
+  }
+  const l7Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 7 - Industrial Air Pollution');
+  const nextAfterL7=know.blocks.findIndex((b,i)=>i>l7Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+  const insertAt=l7Start>=0?(nextAfterL7>=0?nextAfterL7:know.blocks.length):know.blocks.length;
+  know.blocks.splice(insertAt,0,...JSON.parse(JSON.stringify(window.ENVENG_MODULE2_L8_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 8 monitoring measurement passive active direct indirect fixed mobile reference low-cost sensors diffusion tubes compliance spatial temporal resolution').trim();
+
+  state._migrations.envengM2W6L8KnowV1=true;
+  save();
+}
+if(!state._migrations.envengM2W6L9v1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  const existingLecture=env.topics.findIndex(t=>
+    t.title===window.ENVENG_M2_W6L9.title ||
+    /atmospheric dispersion modell?ing$/i.test(String(t.title||''))
+  );
+  const lecture=JSON.parse(JSON.stringify(window.ENVENG_M2_W6L9));
+  if(existingLecture>=0)env.topics.splice(existingLecture,1,lecture);
+  else {
+    const module2Index=env.topics.findIndex(t=>t.title==='Module 2 - What I Need to Know');
+    env.topics.splice(module2Index>=0?module2Index:env.topics.length,0,lecture);
+  }
+
+  state._migrations.envengM2W6L9v1=true;
   save();
 }
 if(!state._migrations.envengMarkedTimeCrunchV1){
