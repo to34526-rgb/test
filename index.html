@@ -719,6 +719,40 @@ if(!state._migrations.envengM2W5L4KnowV1){
   state._migrations.envengM2W5L4KnowV1=true;
   save();
 }
+if(!state._migrations.envengMarkedTimeCrunchV1){
+  const env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(env){
+    const conversions=[
+      {
+        match:/^W2 L5 - Wastewater Treatment(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+        title:'W2 L5 - Wastewater Treatment (Time Crunch)',
+        tags:'ENVENG 200 CIVIL 200 module 1 week 2 lecture 5 time crunch revision wastewater treatment preliminary primary secondary tertiary suspended growth attached growth nutrients disinfection sludge',
+        blocks:window.ENVENG_MODULE1_L5_KNOW_BLOCKS
+      },
+      {
+        match:/^W3 L6 - Drinking Water Treatment Processes(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+        title:'W3 L6 - Drinking Water Treatment Processes (Time Crunch)',
+        tags:'ENVENG 200 CIVIL 200 module 1 week 3 lecture 6 time crunch revision drinking water coagulation flocculation sedimentation filtration disinfection chlorine UV ozone',
+        blocks:window.ENVENG_MODULE1_L6_KNOW_BLOCKS
+      },
+      {
+        match:/^W3 L7 - Stormwater and Urban Runoff Challenges(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+        title:'W3 L7 - Stormwater and Urban Runoff Challenges (Time Crunch)',
+        tags:'ENVENG 200 CIVIL 200 module 1 week 3 lecture 7 time crunch revision stormwater urban runoff impervious surfaces flooding pollutants first flush WSUD LID',
+        blocks:window.ENVENG_MODULE1_L7_KNOW_BLOCKS
+      }
+    ];
+    conversions.forEach(conversion=>{
+      const topic=env.topics.find(t=>conversion.match.test(String(t.title||'')));
+      if(!topic)return;
+      topic.title=conversion.title;
+      topic.tags=conversion.tags;
+      topic.blocks=JSON.parse(JSON.stringify(conversion.blocks));
+    });
+  }
+  state._migrations.envengMarkedTimeCrunchV1=true;
+  save();
+}
 renderAll()}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));status.textContent='Saved'}catch(e){status.textContent='Storage full — export a backup'} }
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
