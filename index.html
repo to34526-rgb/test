@@ -293,6 +293,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="module2-lecture3-data.js"></script>
 <script src="module2-lecture4-data.js"></script>
 <script src="module2-lecture5-data.js"></script>
+<script src="module2-lecture6-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -740,6 +741,28 @@ if(!state._migrations.envengM2W5L5KnowV1){
   know.tags=(know.tags+' lecture 5 community noise Lmax L10 Leq L95 annoyance sleep disturbance noise control barriers modelling').trim();
 
   state._migrations.envengM2W5L5KnowV1=true;
+  save();
+}
+if(!state._migrations.envengM2W5L6KnowV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+  let know=env.topics.find(t=>t.title==='Module 2 - What I Need to Know');
+  if(!know){
+    know={title:'Module 2 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 2 revision air quality noise acoustics monitoring calculations',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL6Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 6 - Sources of Air Pollution and Health Effects');
+  if(oldL6Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL6Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL6Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL6Start);
+  }
+  const l5Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 5 - Community Noise Impacts and Noise Control');
+  const nextAfterL5=know.blocks.findIndex((b,i)=>i>l5Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+  const insertAt=l5Start>=0?(nextAfterL5>=0?nextAfterL5:know.blocks.length):know.blocks.length;
+  know.blocks.splice(insertAt,0,...JSON.parse(JSON.stringify(window.ENVENG_MODULE2_L6_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 6 air pollution particulate matter PM10 PM2.5 particle size NOx CO ozone SO2 VOC health effects sources').trim();
+
+  state._migrations.envengM2W5L6KnowV1=true;
   save();
 }
 if(!state._migrations.envengMarkedTimeCrunchV1){
