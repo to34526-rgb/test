@@ -285,6 +285,7 @@ mjx-container[display="true"]{margin:1em 0!important}
 <script src="lecture2-data.js"></script>
 <script src="lecture4-data.js"></script>
 <script src="lecture5-data.js"></script>
+<script src="lecture6-data.js"></script>
 <script>
 window.MathJax = {
   tex: {
@@ -513,6 +514,39 @@ if(!state._migrations.envengW2L5v1){
   know.tags=(know.tags+' lecture 5 wastewater treatment suspended growth attached growth activated sludge trickling filter tertiary nutrients disinfection').trim();
 
   state._migrations.envengW2L5v1=true;
+  save();
+}
+if(!state._migrations.envengW3L6v1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+
+  const existingIndex=env.topics.findIndex(t=>
+    t.title===window.ENVENG_W3L6.title ||
+    /drinking water treatment processes$/i.test(String(t.title||''))
+  );
+  const lecture=JSON.parse(JSON.stringify(window.ENVENG_W3L6));
+  if(existingIndex>=0)env.topics.splice(existingIndex,1,lecture);
+  else {
+    const l5Index=env.topics.findIndex(t=>t.title===window.ENVENG_W2L5.title);
+    const moduleIndex=env.topics.findIndex(t=>t.title==='Module 1 - What I Need to Know');
+    const insertAt=l5Index>=0?l5Index+1:(moduleIndex>=0?moduleIndex:env.topics.length);
+    env.topics.splice(insertAt,0,lecture);
+  }
+
+  let know=env.topics.find(t=>t.title==='Module 1 - What I Need to Know');
+  if(!know){
+    know={title:'Module 1 - What I Need to Know',tags:'ENVENG 200 CIVIL 200 module 1 revision',blocks:[]};
+    env.topics.push(know);
+  }
+  const oldL6Start=know.blocks.findIndex(b=>b.type==='heading'&&b.text==='Lecture 6 - Drinking Water Treatment Processes');
+  if(oldL6Start>=0){
+    const nextLecture=know.blocks.findIndex((b,i)=>i>oldL6Start&&b.type==='heading'&&/^Lecture \d+\b/.test(b.text));
+    know.blocks.splice(oldL6Start,(nextLecture>=0?nextLecture:know.blocks.length)-oldL6Start);
+  }
+  know.blocks.push(...JSON.parse(JSON.stringify(window.ENVENG_MODULE1_L6_KNOW_BLOCKS)));
+  know.tags=(know.tags+' lecture 6 drinking water coagulation flocculation sedimentation filtration disinfection slow sand rapid sand chlorine UV ozone').trim();
+
+  state._migrations.envengW3L6v1=true;
   save();
 }
 renderAll()}
