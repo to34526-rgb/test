@@ -1,6 +1,8 @@
 window.ENVENG_MODULE2_L7_KNOW_BLOCKS = [
   {type:'heading', text:'Lecture 7 - Industrial Air Pollution'},
-  {type:'text', text:`**Time-crunch priority:** understand what each pollution-control process does and choose the best device for a stated situation.
+  {type:'text', text:`**Highest official mid-semester priorities:** understand and compare the four processes named on the revision slide: **gravity settlers, wet scrubbers, filter baghouses and electrostatic precipitators (ESPs)**. Know what each does and choose the best device for a stated situation.
+
+Cyclones and gaseous-pollutant absorption/adsorption remain useful lecture content, but they are **secondary when revision time is limited**.
 
 Use this chain in scenario answers:
 **industry/source → pollutant form and particle size → separation mechanism → suitable device → engineering trade-off**.
@@ -91,7 +93,7 @@ What this means: understand the common wet-scrubbing principle and its trade-off
 
 **Choose it when:** very high particle removal is required and the facility can support the power, space, cleaning and maintenance demands.`},
 
-  {type:'heading', text:'7. Cyclone separators'},
+  {type:'heading', text:'7. Secondary - Cyclone separators'},
   {type:'image', src:'assets/module2-lecture7-cyclone.jpg', caption:'Lecture slide 31: rotating gas drives particles toward the cyclone wall; solids leave below and cleaner gas exits from the top.'},
   {type:'text', text:`**How it works:** the curved body forces gas into a spiral. Particles with sufficient momentum move to the outer wall, lose kinetic energy and fall; clean gas forms a second spiral and leaves through the top.
 
@@ -139,7 +141,7 @@ For revision, interpret efficiency physically:
 
 There is **no new Lecture 7 calculation to practise**.`},
 
-  {type:'heading', text:'11. Cleaning gaseous pollutants'},
+  {type:'heading', text:'11. Secondary - Cleaning gaseous pollutants'},
   {type:'image', src:'assets/module2-lecture7-flue-gas.jpg', caption:'Lecture slide 43: absorption moves a gas into a solvent, whereas adsorption attaches gas molecules onto a solid surface.'},
   {type:'text', text:`**Absorption (with a b):** transfers a gaseous pollutant **into a liquid solvent**, such as water or an alkaline solution. The lecture describes gas flowing upward while liquid flows downward so the pollutant transfers into the liquid phase and can be treated or neutralised.
 
@@ -179,19 +181,18 @@ Memory aid from the physical process:
 • Trying to learn a new calculation even though the lecturer says this lecture adds none.`},
 
   {type:'heading', text:'Must-Know Checklist - Lecture 7'},
-  {type:'text', text:`□ I can name the five particle-control devices and their separation forces.
+  {type:'text', text:`□ I can explain and compare the four officially prioritised controls: gravity settler, wet scrubber, baghouse and ESP.
 □ I can explain how a gravity settler slows gas and removes coarse particles.
 □ I can explain how a wet scrubber transfers particles into a liquid stream.
 □ I can explain filtration, dust cake and cleaning in a baghouse.
-□ I can explain cyclone separation using spiral flow, momentum and centrifugal action.
 □ I can explain how an ESP charges and collects fine particles.
 □ I can rank the devices broadly by efficiency, power and space requirements.
 □ I can choose a suitable device from particle size and scenario constraints.
-□ I remember that a high-efficiency cyclone trades higher pressure drop for finer-particle capture.
 □ I remember that no collector operates at 100% efficiency.
-□ I can distinguish absorption into a liquid from adsorption onto a solid.
 □ I consider the secondary waste stream created by the control process.
 □ I can justify a combined/pre-cleaning system when one device is insufficient.
+□ If time permits, I can explain cyclone separation and its pressure-drop trade-off.
+□ If time permits, I can distinguish absorption into a liquid from adsorption onto a solid.
 □ I know there is no new Lecture 7 calculation to practise.`},
   {type:'text', text:`Sources: the complete 45-slide **Lecture 7 - Industrial Pollution** deck, the complete Lecture 7 captions, and the mid-semester-test preparation captions. No separate exercise PDF was supplied. This is intentionally the time-crunch version, limited to industrial sources, particle controls, selection trade-offs and flue-gas cleaning.`}
 ];

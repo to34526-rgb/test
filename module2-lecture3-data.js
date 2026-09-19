@@ -1,8 +1,8 @@
 window.ENVENG_MODULE2_L3_KNOW_BLOCKS = [
   {type:'heading', text:'Lecture 3 - The Decibel Scale and Reference Values'},
-  {type:'text', text:`**Time-crunch priority:** this is the lecturer's **heaviest calculation lecture**. Be able to convert between intensity/pressure and their decibel levels, then combine equal and unequal sources. Reproduce all nine supplied exercises, but use the allowed shortcut equations.
+  {type:'text', text:`**Highest official mid-semester priorities:** calculate **sound intensity level** and **sound pressure level**, including conversions between intensity or pressure and the corresponding decibel level.
 
-This directly covers the revision-caption requirement to calculate **sound intensity level** and **sound pressure level**.`},
+Combining equal and unequal sources remains useful formula-sheet and practice-quiz material, but it is **secondary when revision time is limited**. The worked exercises are retained so you can practise the full lecture method.`},
 
   {type:'heading', text:'1. Core idea - a decibel level is relative'},
   {type:'text', text:`The decibel scale compresses very large physical ranges into manageable logarithmic values.
@@ -189,7 +189,7 @@ These are useful checks, not linear addition rules for arbitrary sources.`},
 
 What this means: do not blindly memorise every 3/6/10/20 dB pattern. You should be able to derive or verify it using the supplied logarithmic equations.`},
 
-  {type:'heading', text:'6. Exercise 8 - equal sources'},
+  {type:'heading', text:'6. Secondary practice - Exercise 8, equal sources'},
   {type:'image', src:'assets/module2-lecture3-equal-sources.jpg', caption:'Lecture slide 29: equal sources can be combined by converting through intensity or by using the supplied shortcut.'},
   {type:'text', text:`**Question:** Three loudspeakers each produce **76 dB IL**. What is the total intensity level? Calculate it the hard and easy ways.
 
@@ -229,7 +229,7 @@ L_{total}=10\\log_{10}\\left(\\frac{1.19\\times10^{-4}}{1\\times10^{-12}}\\right
 
 What this means: use \\(L_{total}=L_{one}+10\\log_{10}(n)\\) for equal sources. Understand the hard-way conversion, but the shortcut is explicitly allowed and supplied.`},
 
-  {type:'heading', text:'7. Exercise 9 - unequal sources'},
+  {type:'heading', text:'7. Secondary practice - Exercise 9, unequal sources'},
   {type:'image', src:'assets/module2-lecture3-different-sources.jpg', caption:'Lecture slide 30: unequal source levels must be converted to intensity contributions before they are combined.'},
   {type:'text', text:`**Question:** What total intensity level results from three sources producing **20, 25 and 30 dB IL**?
 
@@ -290,9 +290,9 @@ L_{total}=10\\log_{10}\\left(
 □ I label answers as dB IL or dB SPL.
 □ I can reproduce Exercises 1-6.
 □ I can derive the 3 dB and 6 dB doubling checks rather than blindly memorising them.
-□ I combine equal sources with \\(L_{one}+10\\log_{10}(n)\\).
-□ I combine unequal source levels by summing linear intensity contributions.
-□ I can reproduce Exercises 8 and 9 and check whether each answer is reasonable.
+□ If time permits, I combine equal sources with \\(L_{one}+10\\log_{10}(n)\\).
+□ If time permits, I combine unequal source levels by summing linear intensity contributions.
+□ I recognise Exercises 8 and 9 as secondary practice rather than the official mid-semester priority.
 □ I know sound-power-level questions are not the assessment focus.
 □ I will practise the matching weekly practice-quiz problems.`},
   {type:'text', text:`Sources: the complete 30-slide **Lecture 3 - The Decibel Scale and Reference Values** deck, both pages of the **class exercises - SOLUTIONS** PDF, the complete Lecture 3 captions, and the mid-semester-test preparation captions. This is intentionally the time-crunch version; no separate full Lecture 3 page has been added.`}

@@ -360,7 +360,11 @@ The solids procedure links measurements to physical fractions. Settling and filt
 
 window.ENVENG_MODULE1_L2_KNOW_BLOCKS = [
   {type:'heading', text:'Lecture 2 - Water Quality Parameters and Calculations'},
-  {type:'text', text:`This section is the focused revision list for **Week 1, Lecture 2**. The lecturer framed the worked calculation types as testable, so revision should combine definitions with repeated calculation practice.`},
+  {type:'text', text:`This section is the focused revision list for **Week 1, Lecture 2**.
+
+**Highest official mid-semester priorities:** laboratory solids calculations, total alkalinity and total hardness, and carbonate/non-carbonate hardness. Equivalent concentration is the method needed to complete the alkalinity and hardness calculations.
+
+The lecturer also framed all five worked calculation types as testable. **TDS from electrical conductivity remains assessable lecture and formula-sheet content, but it is a secondary priority when revision time is limited.**`},
   {type:'text', text:`**Timestamp note:** the uploaded plain-text captions do not contain embedded timecodes. The Part 1 and Part 2 references below are **approximate** estimates based on transcript position.`},
 
   {type:'heading', text:'Assessment scope and supplied information'},
@@ -409,6 +413,7 @@ What this means: the solids example is a model assessment question. Learn how to
 • **hardness:** concentration effect of multivalent metal ions, using Ca²⁺ and Mg²⁺ in this course
 • **carbonate hardness:** temporary hardness; the smaller of total hardness and total alkalinity
 • **non-carbonate hardness:** permanent hardness; total hardness minus carbonate hardness
+• **electrical conductivity (EC):** the ability of water to conduct electrical current because it contains dissolved ions, measured in µS/cm; it is used as a rapid indicator of ionic or dissolved-solids content
 • **TDS:** solids dissolved in water or filtrate residue remaining after the specified drying step
 • **TSS:** settleable solids plus filter-retained suspended solids in the class exercise
 • **TFS:** solids remaining after ignition at 550 °C

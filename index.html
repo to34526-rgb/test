@@ -863,6 +863,85 @@ if(!state._migrations.envengMarkedTimeCrunchV1){
   state._migrations.envengMarkedTimeCrunchV1=true;
   save();
 }
+if(!state._migrations.envengAuditTimeCrunchV1){
+  const env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(env){
+    const l8=env.topics.find(t=>
+      /^W3 L8 - LID Solutions and Integrated Three Waters Management(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i.test(String(t.title||''))
+    );
+    if(l8){
+      l8.title='W3 L8 - LID Solutions and Integrated Three Waters Management (Time Crunch)';
+      l8.tags='ENVENG 200 CIVIL 200 module 1 week 3 lecture 8 time crunch revision LID WSUD integrated three waters permeable paving bioretention rain garden wetland swale planter filter strip infiltration trench dry well cistern green roof treatment train';
+      l8.blocks=JSON.parse(JSON.stringify(window.ENVENG_MODULE1_L8_KNOW_BLOCKS));
+    }
+  }
+  state._migrations.envengAuditTimeCrunchV1=true;
+  save();
+}
+if(!state._migrations.envengM2StandaloneTimeCrunchV1){
+  let env=state.courses.find(c=>c.name==='ENVENG 200');
+  if(!env){env={name:'ENVENG 200',topics:[]};state.courses.push(env)}
+
+  const lectures=[
+    {
+      match:/^(?:W4 L2 - )?Acoustics for Engineers(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W4 L2 - Acoustics for Engineers (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 4 lecture 2 time crunch revision acoustics frequency wavelength sound speed power intensity inverse square pressure amplitude absorption reverberation',
+      blocks:window.ENVENG_MODULE2_L2_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W4 L3 - )?The Decibel Scale and Reference Values(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W4 L3 - The Decibel Scale and Reference Values (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 4 lecture 3 time crunch revision decibel intensity level pressure level reference values logarithms equal sources unequal sources',
+      blocks:window.ENVENG_MODULE2_L3_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W5 L4 - )?Occupational Noise for Engineers(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W5 L4 - Occupational Noise for Engineers (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 5 lecture 4 time crunch revision occupational noise hearing loss audiogram A-weighting dBA daily dose FDD exchange rate hearing protection',
+      blocks:window.ENVENG_MODULE2_L4_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W5 L5 - )?Community Noise Impacts of Engineering and Noise Control(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W5 L5 - Community Noise Impacts of Engineering and Noise Control (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 5 lecture 5 time crunch revision community noise Lmax L10 Leq L95 annoyance sleep disturbance noise control barriers modelling',
+      blocks:window.ENVENG_MODULE2_L5_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W5 L6 - )?Sources of Air Pollution and Health Effects(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W5 L6 - Sources of Air Pollution and Health Effects (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 5 lecture 6 time crunch revision air pollution particulate matter PM10 PM2.5 particle size NOx CO ozone SO2 VOC health effects sources',
+      blocks:window.ENVENG_MODULE2_L6_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W6 L7 - )?Industrial Air Pollution(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W6 L7 - Industrial Air Pollution (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 6 lecture 7 time crunch revision industrial air pollution gravity settler wet scrubber baghouse cyclone electrostatic precipitator absorption adsorption control selection',
+      blocks:window.ENVENG_MODULE2_L7_KNOW_BLOCKS
+    },
+    {
+      match:/^(?:W6 L8 - )?Measurement Methods and Exposure Assessment(?:\s*\((?:turn to time crunch|Time Crunch)\))?$/i,
+      title:'W6 L8 - Measurement Methods and Exposure Assessment (Time Crunch)',
+      tags:'ENVENG 200 CIVIL 200 module 2 week 6 lecture 8 time crunch revision monitoring measurement passive active direct indirect fixed mobile reference low-cost sensors diffusion tubes compliance spatial temporal resolution',
+      blocks:window.ENVENG_MODULE2_L8_KNOW_BLOCKS
+    }
+  ];
+
+  env.topics=env.topics.filter(t=>!lectures.some(lecture=>lecture.match.test(String(t.title||''))));
+  const standalone=lectures.map(lecture=>({
+    title:lecture.title,
+    tags:lecture.tags,
+    blocks:JSON.parse(JSON.stringify(lecture.blocks))
+  }));
+  const l1Index=env.topics.findIndex(t=>/^W4 L1 - Introduction to Module 2$/i.test(String(t.title||'')));
+  const l9Index=env.topics.findIndex(t=>/^W6 L9 - Atmospheric Dispersion Modell?ing$/i.test(String(t.title||'')));
+  const module2Index=env.topics.findIndex(t=>t.title==='Module 2 - What I Need to Know');
+  const insertAt=l1Index>=0?l1Index+1:(l9Index>=0?l9Index:(module2Index>=0?module2Index:env.topics.length));
+  env.topics.splice(insertAt,0,...standalone);
+
+  state._migrations.envengM2StandaloneTimeCrunchV1=true;
+  save();
+}
 renderAll()}
 function save(){try{localStorage.setItem(key,JSON.stringify(state));status.textContent='Saved'}catch(e){status.textContent='Storage full — export a backup'} }
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}

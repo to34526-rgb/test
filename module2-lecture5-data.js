@@ -1,6 +1,8 @@
 window.ENVENG_MODULE2_L5_KNOW_BLOCKS = [
   {type:'heading', text:'Lecture 5 - Community Noise Impacts and Noise Control'},
-  {type:'text', text:`**Time-crunch priority:** know exactly what **Lmax, L10, Leq and L95** mean and choose the correct measure from a scenario. Then learn the three-step noise-control hierarchy and the main barrier-design principles.
+  {type:'text', text:`**Highest official mid-semester priority:** know exactly what **Lmax, L10, Leq and L95** mean and choose the correct measure from a scenario.
+
+Community-noise effects, the three-step noise-control hierarchy and barrier-design principles remain useful lecture content, but they are **secondary when revision time is limited**.
 
 This lecture contains **no required numerical calculation or worked calculation PDF**. The mid-semester revision captions focus on interpretation of the four noise parameters.`},
 
